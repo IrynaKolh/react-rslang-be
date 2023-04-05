@@ -1,7 +1,7 @@
 const logger = require('./common/logging');
 
 // uncaughtException is been catching by Winston
-process.on('unhandledRejection', reason => {
+process.on('unhandledRejection', (reason) => {
   process.emit('uncaughtException', reason);
 });
 
@@ -12,8 +12,6 @@ const app = require('./app');
 mongoose.connect(MONGO_CONNECTION_STRING, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true
 });
 
 const db = mongoose.connection;
