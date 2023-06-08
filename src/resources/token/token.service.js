@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const uuid = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 const { AUTHENTICATION_ERROR } = require('../../errors/appErrors');
 
 const tokenRepo = require('./token.db.repository');
@@ -24,7 +24,7 @@ const getTokens = async (userId) => {
     expiresIn: JWT_EXPIRE_TIME,
   });
 
-  const tokenId = uuid();
+  const tokenId = uuidv4();
   const refreshToken = jwt.sign(
     { id: userId, tokenId },
     JWT_REFRESH_SECRET_KEY,
